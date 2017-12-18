@@ -1,9 +1,9 @@
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
 
-public class StringCodeTest {
+public class StringCodeTest extends TestCase {
 
 	//
 	// blowup
