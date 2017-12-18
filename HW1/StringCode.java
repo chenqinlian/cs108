@@ -49,7 +49,7 @@ public class StringCode {
 	 * maxRun(String str)
 	 */	
     
-	public int maxRun(String str){
+	public static int maxRun(String str){
 		
 		char lastChar = '\0';
 		
@@ -77,7 +77,7 @@ public class StringCode {
 	 * stringIntersect(String a, String b, int len)
 	 */	
 	
-	public boolean stringIntersect(String a, String b, int len){
+	public static boolean stringIntersect(String a, String b, int len){
 		//build Hashset
 		HashSet<String> setting = new HashSet<>();
 		
@@ -86,7 +86,7 @@ public class StringCode {
 			setting.add(cur);
 		}
 		
-		//Chech HashSet, compare substring of a/b
+		//Check HashSet, compare substring of a/b
 		for(int j=0; j+len-1<b.length();j++){
 			String cur = b.substring(j, j+len);
 			if(setting.contains(cur)){
@@ -97,9 +97,10 @@ public class StringCode {
 		return false;
 	}
 
-	
 	public static void main(String[] args) {
-
+		
+		
+		
 	}
 
 }
