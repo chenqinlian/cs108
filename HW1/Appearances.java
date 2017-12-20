@@ -17,8 +17,7 @@ public class Appearances {
 		
 		calculateAppearance(a, aHash);
 		calculateAppearance(b, bHash);
-		
-		
+
 		//judge whether equals
 		int result = 0;
 		for(T element: aHash.keySet()){
@@ -26,8 +25,6 @@ public class Appearances {
 				result++;
 			}
 		}
-
-
 		
 		return result; // YOUR CODE HERE
 	}
@@ -42,7 +39,6 @@ public class Appearances {
 				mapping.put(element,1);
 			}
 		}
-		
 	}
 
 	
