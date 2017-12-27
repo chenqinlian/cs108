@@ -1,9 +1,11 @@
 // Transaction.java
+package PartA;
 /*
  (provided code)
  Transaction is just a dumb struct to hold
  one transaction. Supports toString.
 */
+
 public class Transaction {
 	public int from;
 	public int to;
