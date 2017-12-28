@@ -35,10 +35,31 @@ public class Piece {
 	*/
 	public Piece(TPoint[] points) {
 		// YOUR CODE HERE
-	}
-	
 
+		//Initilize width, height
+		int width=0, height=0;
+		for(TPoint point: points){
+			width = Math.max(width, point.x+1);
+			height= Math.max(height,point.y+1);
+		}
+		
+		//Initilize skirt
+		int[] skirt = new int[width];
+		Arrays.fill(skirt, Integer.MAX_VALUE);
+		for(TPoint point: points){
+			skirt[point.x] = Math.min(skirt[point.x], point.y);
+		}
+		
+		
+		this.body = points;
+		this.width  = width;
+		this.height = height;
+		this.skirt  = skirt;
+		
+	}
+		
 	
+		
 	
 	/**
 	 * Alternate constructor, takes a String with the x,y body points
@@ -88,7 +109,17 @@ public class Piece {
 	 */
 	public Piece computeNextRotation() {
 		// YOUR CODE HERE
-		return null; // YOUR CODE HERE
+		
+		TPoint[] newBody = new TPoint[this.body.length];
+		
+		int i=0;
+		for(TPoint point: this.body){
+			newBody[i] = new TPoint(this.height-1-point.y, point.x);//height counts from 1, while coordinate counts from 0
+			i++;
+		}
+		
+		
+		return new Piece(newBody); // YOUR CODE HERE
 	}
 
 	/**
@@ -121,8 +152,24 @@ public class Piece {
 		Piece other = (Piece)obj;
 		
 		// YOUR CODE HERE
-		return true;
+		Arrays.sort(this.body, comparator);
+		Arrays.sort(other.body, comparator);
+		
+		return Arrays.equals(this.body, other.body);
+		
 	}
+	
+	Comparator comparator = new Comparator<TPoint>(){
+		
+		@Override
+		public int compare(TPoint point1, TPoint point2) {
+			if(point1.x!=point2.x){
+				return Integer.compare(point1.x, point2.x);
+			}else{
+				return Integer.compare(point1.y, point2.y);
+			}
+		}		
+	};
 
 
 	// String constants for the standard 7 tetris pieces
@@ -188,9 +235,28 @@ public class Piece {
 	*/
 	private static Piece makeFastRotations(Piece root) {
 		// YOUR CODE HERE
-		return null; // YOUR CODE HERE
+		
+		root.initRotationSequence(root);
+		return root; // YOUR CODE HERE
 	}
 	
+	private void initRotationSequence(Piece head){
+		
+		Piece currentPiece = this;
+		Piece nextPiece;
+		
+		while (true) {
+			nextPiece = currentPiece.computeNextRotation();
+			if (nextPiece.equals(head)) {
+				currentPiece.next = head;
+				break;
+			} else {
+				currentPiece.next = nextPiece;
+			}
+			currentPiece = nextPiece;
+		}
+		
+	}
 	
 
 	/**
@@ -219,6 +285,9 @@ public class Piece {
 	}
 
 	
+	public static void main(String[] args) {
 
+		
+	}
 
 }
