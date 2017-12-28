@@ -1,23 +1,29 @@
-// Transaction.java
 package PartA;
-/*
- (provided code)
- Transaction is just a dumb struct to hold
- one transaction. Supports toString.
-*/
 
 public class Transaction {
-	public int from;
-	public int to;
-	public int amount;
+	final int fromId;
+	final int toId;
+	final int amount;
 	
-   	public Transaction(int from, int to, int amount) {
-		this.from = from;
-		this.to = to;
+	public Transaction(int fromId, int toId, int amount) {
+		this.fromId = fromId;
+		this.toId = toId;
 		this.amount = amount;
 	}
-
-	public String toString() {
-		return("from:" + from + " to:" + to + " amt:" + amount);
+	
+	public Transaction(int[] trans) {
+		this(trans[0], trans[1], trans[2]);
+	}
+	
+	public int getSrcId() {
+		return fromId;
+	}
+	
+	public int getDesId() {
+		return toId;
+	}
+	
+	public int getAmount() {
+		return amount;
 	}
 }
